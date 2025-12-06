@@ -1,0 +1,45 @@
+# Terraform variable files (may contain secrets)
+terraform.tfvars
+*.tfvars
+!*.tfvars.example
+
+# Terraform state and provider cache
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate*
+*.tfstate.backup
+
+# Terraform plan files
+*.tfplan
+*.tfplan.*
+tfplan
+tfplan*.txt
+tfplan*.binary
+
+# Temporary files
+tmp-backup-extract/
+*.tmp
+
+# Import-related temporary files
+*-ids.txt
+dns-*.txt
+*terraform-mapping.txt
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Ignore override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+
