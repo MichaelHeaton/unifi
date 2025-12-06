@@ -1,0 +1,49 @@
+# UniFi Network Configuration
+# Copy this file to terraform.tfvars and fill in your values
+# DO NOT commit terraform.tfvars to version control
+
+# Note: HCP organization is set in terraform.tf cloud block
+# It can be overridden via TF_CLOUD_ORGANIZATION environment variable
+
+# Vault Configuration
+# Set to false if Vault is unavailable - credentials will be read from variables below
+use_vault = false
+
+# UniFi Controller Configuration
+# If use_vault = false, provide credentials here or via environment variables
+# Environment variables: TF_VAR_unifi_api_key, TF_VAR_unifi_username, TF_VAR_unifi_password
+unifi_api_url        = "https://unifi.mgmt.specterrealm.com"
+unifi_site           = "default"
+unifi_allow_insecure = true
+
+# UniFi Credentials (only needed if use_vault = false)
+# These can also be set via environment variables for better security
+# unifi_api_key  = "your-api-key-here"
+# unifi_username = "admin"
+# unifi_password = "your-password-here"
+
+# WLAN Configuration (only needed if use_vault = false)
+# These can also be set via environment variables for better security
+# wlan_main_password  = "main-wifi-password"
+# wlan_main_ssid      = "MainNetworkName"
+# wlan_iot_password   = "iot-wifi-password"
+# wlan_iot_ssid       = "IoTNetworkName"
+# wlan_guest_password  = "guest-wifi-password"
+# wlan_guest_ssid     = "GuestNetworkName"
+
+# Network Configuration
+dns_servers     = ["8.8.8.8", "8.8.4.4"]
+dhcp_lease_time = 86400 # 24 hours
+
+# VLAN Configuration
+enable_dhcp  = true
+vlan_purpose = "corporate"
+
+# Security Configuration
+enable_firewall        = true
+enable_guest_isolation = true
+
+# Monitoring Configuration
+enable_monitoring    = true
+monitoring_retention = 30
+
