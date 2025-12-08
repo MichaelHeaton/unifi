@@ -192,3 +192,80 @@ resource "unifi_dns_record" "swarm_pi5_04_storage" {
   value       = "172.16.30.16"
   port        = 0
 }
+
+# Docker Swarm Services
+## Traefik (Reverse Proxy)
+resource "unifi_dns_record" "traefik" {
+  name        = "traefik.specterrealm.com"
+  record_type = "A"
+  value       = "172.16.5.3"
+  port        = 0
+}
+
+resource "unifi_dns_record" "traefik_mgmt" {
+  name        = "traefik-mgmt.specterrealm.com"
+  record_type = "A"
+  value       = "172.16.15.3"
+  port        = 0
+}
+
+## Portainer (Container Management)
+resource "unifi_dns_record" "portainer_mgmt" {
+  name        = "portainer-mgmt.specterrealm.com"
+  record_type = "A"
+  value       = "172.16.15.3"
+  port        = 0
+  # Note: Direct access to Portainer on VLAN 15 (management access)
+}
+
+## AdGuard Home (DNS/Ad-blocking)
+resource "unifi_dns_record" "blocker" {
+  name        = "blocker.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com, which routes to AdGuard at 172.16.15.2:3000
+}
+
+resource "unifi_dns_record" "adguard_mgmt" {
+  name        = "adguard-mgmt.specterrealm.com"
+  record_type = "A"
+  value       = "172.16.15.2"
+  port        = 0
+  # Note: Direct access to AdGuard Web UI (bypasses Traefik)
+}
+
+## Homepage (Dashboards)
+resource "unifi_dns_record" "homepage_family" {
+  name        = "home.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Family Dashboard
+}
+
+resource "unifi_dns_record" "homepage_admin" {
+  name        = "admin.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Admin Dashboard
+}
+
+## Streaming (Plex)
+resource "unifi_dns_record" "streaming" {
+  name        = "streaming.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Plex streaming service
+}
+
+# Proxmox VMs
+## Plex VM
+resource "unifi_dns_record" "plex_vm_01" {
+  name        = "plex-vm-01.specterrealm.com"
+  record_type = "A"
+  value       = "172.16.10.20"
+  port        = 0
+}
