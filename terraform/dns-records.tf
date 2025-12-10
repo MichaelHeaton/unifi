@@ -261,6 +261,79 @@ resource "unifi_dns_record" "streaming" {
   # Note: CNAME pointing to traefik.specterrealm.com for Plex streaming service
 }
 
+## Streaming Stack Automation (Sonarr/Radarr/Bazarr/Lidarr)
+resource "unifi_dns_record" "sonarr" {
+  name        = "sonarr.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Sonarr TV show management
+}
+
+resource "unifi_dns_record" "radarr" {
+  name        = "radarr.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Radarr movie management
+}
+
+resource "unifi_dns_record" "bazarr" {
+  name        = "bazarr.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Bazarr subtitle management
+}
+
+resource "unifi_dns_record" "overseerr" {
+  name        = "overseerr.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Overseerr media request management
+}
+
+resource "unifi_dns_record" "tautulli" {
+  name        = "tautulli.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Tautulli Plex analytics
+}
+
+resource "unifi_dns_record" "prowlarr" {
+  name        = "prowlarr.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for Prowlarr indexer management
+}
+
+resource "unifi_dns_record" "sabnzbd" {
+  name        = "sabnzbd.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: CNAME pointing to traefik.specterrealm.com for SABnzbd Usenet downloader
+}
+
+resource "unifi_dns_record" "tdarr" {
+  name        = "tdarr.specterrealm.com"
+  record_type = "CNAME"
+  value       = "traefik.specterrealm.com"
+  port        = 0
+  # Note: Tdarr web UI accessible via Traefik reverse proxy
+}
+
+resource "unifi_dns_record" "tdarr_vm_01" {
+  name        = "tdarr-vm-01.specterrealm.com"
+  record_type = "A"
+  value       = "172.16.10.21"
+  port        = 0
+  # Note: Direct A record for Tdarr VM hostname (following naming convention)
+}
+
 # Proxmox VMs
 ## Plex VM
 resource "unifi_dns_record" "plex_vm_01" {
