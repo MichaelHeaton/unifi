@@ -277,7 +277,7 @@ resource "unifi_network" "iot" {
   dhcp_start   = local.vlans.iot.dhcp_start
   dhcp_stop    = local.vlans.iot.dhcp_stop
   dhcp_lease   = local.network.dhcp_lease
-  # dhcp_dns removed to match current setup (empty DNS servers)
+  dhcp_dns     = ["172.16.200.2", "172.16.200.1", "1.1.1.1"]
 
   # IPv6 Settings to match current setup
   dhcp_v6_start          = "::2"

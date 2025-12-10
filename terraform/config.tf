@@ -45,7 +45,7 @@ locals {
       name       = "Family"
       vlan_id    = 5
       subnet     = "172.16.5.0/24"
-      dhcp_start = "172.16.5.6"
+      dhcp_start = "172.16.5.30"
       dhcp_stop  = "172.16.5.254"
     }
     production = {
@@ -102,14 +102,14 @@ locals {
       name       = "Guest"
       vlan_id    = 101
       subnet     = "172.16.101.0/24"
-      dhcp_start = "172.16.101.6"
+      dhcp_start = "172.16.101.30"
       dhcp_stop  = "172.16.101.254"
     }
     iot = {
       name       = "IoT"
       vlan_id    = 200
       subnet     = "172.16.200.0/24"
-      dhcp_start = "172.16.200.6"
+      dhcp_start = "172.16.200.30"
       dhcp_stop  = "172.16.200.254"
     }
   }
